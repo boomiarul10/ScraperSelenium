@@ -1,0 +1,44 @@
+﻿div
+  .modal-header
+    h3.modal-title Editing Variable {{vm.entity.name}}
+    |   
+  .modal-body
+    div(ng-controller="variableMangemntController")
+      accordion(close-others="false")
+        accordion-group(heading='Variable Details', is-open='true', is-disabled='false')
+          div
+            form(name='variableForm', ng-submit='submitForm()', novalidate='')
+              table(cellpadding='10')
+                tr
+                  td
+                    .input-group(style='padding-right: 20px;')
+                      span.input-group-addon(style='width:150px; text-align: left;') Variable Name
+                      input.form-control(disabled, placeholder='Variable Name', ng-model='vm.entity.name')
+                  td
+                    .form-group(ng-class="{ 'has-error' : variableForm.description.$invalid && !variableForm.description.$pristine }")
+                      .input-group
+                        span.input-group-addon(style='width:150px; text-align: left;') Description
+                        input.form-control(placeholder='Variable Descritpion', ng-model='vm.entity.description', required='',name='description')                 
+                tr
+                  td(colspan='2')
+                    br
+                tr
+                  td
+                    input(placeholder="Active",type='checkbox',class='', ng-model='vm.entity.active', required='', style='margin-left:20px') 
+                    span    Active
+                tr
+                  td(colspan='2')
+                    .form-group(ng-class="{ 'has-error' : variableForm.script.$invalid && !variableForm.script.$pristine }")
+                      br
+        accordion-group(heading='Variable Script', is-open='true', is-disabled='false')
+          div.accordianEditor( id="editor", ng-init="initdiv()", ui-ace="{ showGutter: true, mode: 'javascript', theme: 'twilight', showPrintMargin: false }", ng-model='vm.entity.script', style=" display: 'inline-block', width:75%",name='script')
+
+      hr
+      button.btn.btn-primary(type="button", data-toggle="modal", data-target="#buildModal", ng-click='vm.buildVariableScript(vm.entity.script)',ng-disabled="!vm.entity.script") Compile
+      button.btn.btn-success(style='margin : 0px 2.5px;', ng-click='vm.save(vm.entity)',ng-disabled="!vm.entity.description || !vm.entity.script") Save
+      button.btn.btn-primary(style='margin-right: 2.5px;', ng-click='vm.reset()') Reset
+      button.btn.btn-primary(style='margin-right: 2.5px;',type="button", data-toggle="modal", data-target="#deleteModal", ng-click='vm.deleteVariable(vm.entity)') Delete
+      button.btn.btn-warning(ng-click='vm.close(vm.entity)') Cancel
+
+
+

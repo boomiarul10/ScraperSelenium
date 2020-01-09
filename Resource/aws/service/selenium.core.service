@@ -1,0 +1,12 @@
+[Unit]
+Description=Selenium Core Batch Service
+
+[Service]
+Type=simple
+User=selenium
+
+Environment=DISPLAY=:44
+ExecStart=/usr/bin/java -jar /opt/selenium/resource/ServiceStart.jar
+
+[Install]
+WantedBy=multi-user.target

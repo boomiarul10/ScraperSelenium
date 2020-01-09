@@ -1,0 +1,8 @@
+﻿.modal-header
+  h3.modal-title {{selectedVariable.name}}
+.modal-body
+  | 
+  div( id="variableeditor", ui-ace="{ showGutter: true, mode: 'javascript', theme: 'twilight', showPrintMargin: false, onLoad: aceLoaded }", ng-model='selectedVariable.script')
+.modal-footer
+  button.btn.btn-warning(type='button', ng-click='closeVar()')
+    | Cancel

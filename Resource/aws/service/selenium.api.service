@@ -1,0 +1,12 @@
+[Unit]
+Description=Selenium Scraper API
+
+[Service]
+Type=simple
+User=selenium
+
+Environment=NODE_ENV=production DISPLAY=:44 
+ExecStart=/usr/local/bin/node /opt/selenium/application/SS.API/ npm start
+
+[Install]
+WantedBy=multi-user.target

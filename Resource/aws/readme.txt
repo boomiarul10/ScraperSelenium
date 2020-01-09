@@ -1,0 +1,1 @@
+The AWS configurations are defined based on the current deployment location in AWS server. Which is,, /opt/selenium/... (application / resource)

@@ -1,0 +1,13 @@
+[Unit]
+Description=Selenium Hub
+
+[Service]
+Type=simple
+#User=selenium
+User=root
+
+Environment=DISPLAY=:44
+ExecStart=/usr/bin/java -jar /opt/selenium/resource/selenium-grid/selenium-server-standalone-3.0.1.jar -role hub -hubConfig /opt/selenium/resource/selenium-grid/hub.config.json
+
+[Install]
+WantedBy=multi-user.target

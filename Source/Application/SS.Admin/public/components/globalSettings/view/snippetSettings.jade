@@ -1,0 +1,67 @@
+﻿div(ng-controller="snippetMangementController")
+  div.pageheading 
+    .left
+      .text Snippet Settings
+  div.pageblock
+    accordion(close-others="true")
+      accordion-group(heading='Add New Snippet', is-disabled='false')
+        br
+        form(name='snippetForm', ng-submit='submitForm()', novalidate='')
+          table(cellpadding='10')
+            tr
+              td
+                .form-group(ng-class="{ 'has-error' : snippetForm.name.$invalid && !snippetForm.name.$pristine }")
+                  .input-group(style='padding-right: 20px;')
+                    span.input-group-addon(style='width:150px; text-align: left;') Snippet Name
+                    input.form-control(placeholder='Name', ng-model='mSnippet.name', title='Snippet Name', type='text', name='name', required='', tooltip='Snippet name is required.', tooltip-placement='top')
+              td
+                .form-group(ng-class="{ 'has-error' : snippetForm.description.$invalid && !snippetForm.description.$pristine }")
+                  .input-group(style='padding-right: 20px;')
+                    span.input-group-addon(style='width:150px; text-align: left;') Snippet Description
+                    input.form-control(placeholder='Description', ng-model='mSnippet.description', title='Snippet Description', type='text', name='name', required='', tooltip='Snippet description is required.', tooltip-placement='right')
+            tr
+              td(colspan='2')
+                br 
+            tr
+              td
+                .form-group(ng-class="{ 'has-error' : snippetForm.active.$invalid && !snippetForm.active.$pristine }")
+                  input(placeholder="Active",type='checkbox',class='', ng-init="mSnippet.active=false", ng-model='mSnippet.active', name='active', required='')
+                  span    Active
+            tr
+              td(colspan='2')
+                br         
+        p
+        div(ui-ace="{ showGutter: true, mode: 'javascript', theme: 'twilight', showPrintMargin: false }", ng-model='mSnippet.script', id="editor", ng-class='{ error: !mSnippet.script }', required= '')
+        p
+          .row
+            .col-xs-9
+              button.btn.btn-primary(type="button", data-toggle="modal", data-target="#buildModal", ng-click='BuildSnippetScript(mSnippet.script)') Compile
+            .col-xs-3
+              button.btn.btn-primary(style='margin-right: 1px;', ng-click='addSnippet(mSnippet)', ng-disabled="!mSnippet.script || !mSnippet.filepath || !mSnippet.name") Save Snippet
+              button.btn.btn-primary(style='margin-right: 2.5px;', ng-click='reset()') Reset
+            tr
+              td(colspan='2')
+                br
+      br
+      accordion-group(heading='Existing Snippet Settings', is-open='false', is-disabled='false')
+        br
+        table(class="table table-striped table-hover ", style="table-layout:fixed")
+          thead.tableheading
+            tr(style= "border-bottom: 1px solid #ccc;")
+              th 
+              th Snippet Name
+              th Description
+              th Active
+          tbody
+            tr(ng-repeat='data in initialData', style="padding:10px 10px 30px 10px; border-bottom: 1px solid #ccc;")
+              td(style="width:5%")
+                span
+                  div
+                    button(type="button", class="btn-small btn-primary", ng-click="editSnippetModal(data)")
+                      span(class="fa fa-pencil-square-o")
+              td(style="width:35%")
+                span {{data.name}}
+              td(style="width:35%")
+                span {{data.description}}
+              td(style="width:25%")
+                span {{data.active}}

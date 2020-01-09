@@ -1,0 +1,6 @@
+﻿div(ng-controller="detailedHistoryController")
+  div.pageheading 
+    .left
+      .text Bot Execution History
+  div.pageblock
+    div(ui-grid="gridOptions" external-scopes="clickHandler" ui-grid-edit ui-grid-resize-columns ui-grid-auto-resize class='client-grid1')

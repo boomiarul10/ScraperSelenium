@@ -1,0 +1,40 @@
+﻿div(ng-controller="executionDetailsController")
+  h3 Execution Details
+  div.pageblock(style="width:98%; float:right; margin-right:2%;", ng-if="executionProgress.length >= 1")
+    table(class="table table-striped table-hover ", style="table-layout:fixed")
+      thead.tableheading
+        tr(style= "border-bottom: 1px solid #ccc;")
+          th Execution ID
+          th Bot Name
+          th Client Name
+          th Execution Server
+          th Started At
+          th Ended At
+          th Status
+          th
+      tbody
+          tr(ng-repeat='scheduleExecution in executionProgress.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage))', style="padding:10px 10px 30px 10px; border-bottom: 1px solid #ccc;")
+            td 
+              span {{scheduleExecution.executionid}}
+            td 
+              span {{scheduleExecution.botname}}
+            td 
+              span {{scheduleExecution.clientname}}
+            td 
+              span {{scheduleExecution.batchservername}}
+            td
+              span(style="font-size: 0.90em; margin-top:2%", ng-bind="scheduleExecution.starttime | date:'MM/dd/yyyy hh:mm:ss a'")
+            td
+              span(style="font-size: 0.90em; margin-top:2%", ng-bind="scheduleExecution.endtime | date:'MM/dd/yyyy hh:mm:ss a'")
+            td 
+              span(ng-show="scheduleExecution.scrapestatus=='1'") Completed
+              span(ng-show="scheduleExecution.scrapestatus=='2'") Queued
+              span(ng-show="scheduleExecution.scrapestatus=='3'") Failed
+              span(ng-show="scheduleExecution.scrapestatus=='4'") In Progress
+              span(ng-show="scheduleExecution.scrapestatus=='5'") Stopped
+            td
+              button(class="media-object button-icon botonesPlayStop", ng-click='StopExecution(scheduleExecution.executionid)') Stop
+    div(style="width: 50%;margin: 0 auto;")
+      pagination(total-items="executionProgress.length" ng-model="currentPage" items-per-page="itemsPerPage")
+  div.pageblock(style="width:98%; float:right; margin-right:2%;", ng-if="executionProgress.length < 1")
+    span No Bot is running currently

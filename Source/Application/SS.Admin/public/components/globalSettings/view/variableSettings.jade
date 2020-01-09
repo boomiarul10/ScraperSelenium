@@ -1,0 +1,65 @@
+﻿div(ng-controller="variableMangemntController")
+  div.pageheading 
+    .left
+      .text Variable Settings
+  div.pageblock
+    accordion(close-others="true")
+      accordion-group(heading='Add New Variable', is-disabled='false')
+        br
+        form(name='variableForm', ng-submit='submitForm()', novalidate='')
+          table(cellpadding='10')
+            tr
+              td
+                .form-group(ng-class="{ 'has-error' : variableForm.name.$invalid && !variableForm.name.$pristine }")
+                  .input-group(style='padding-right: 20px;')
+                    span.input-group-addon(style='width:150px; text-align: left;') Variable Name
+                    input.form-control(placeholder='Name', ng-model='mVariable.name', title='Variable Name', type='text', name='name', required='', tooltip='Variable name is required.', tooltip-placement='top')
+              td
+                .form-group(ng-class="{ 'has-error' : variableForm.description.$invalid && !variableForm.description.$pristine }")
+                  .input-group(style='padding-right: 20px;')
+                    span.input-group-addon(style='width:150px; text-align: left;') Description
+                    input.form-control(placeholder='Description', ng-model='mVariable.description', title='Variable Description', type='text', name='description', required='', tooltip='Variable description is required.', tooltip-placement='right')
+            tr
+              td(colspan='2')
+                br  
+            tr
+              td
+                .form-group(ng-class="{ 'has-error' : variableForm.active.$invalid && !variableForm.active.$pristine }")
+                  input(placeholder="Active",type='checkbox',class='', ng-init="mVariable.active=false", ng-model='mVariable.active', name='active', required='')
+                  span    Active
+            tr
+              td(colspan='2')
+                br 
+    
+        p
+        div(ui-ace="{ showGutter: true, mode: 'javascript', theme: 'twilight', showPrintMargin: false }", ng-model='mVariable.script', id="editor", ng-class='{ error: !mVariable.script }', required= '')
+        p
+        .row
+          .col-xs-9
+            button.btn.btn-primary(type="button", data-toggle="modal", data-target="#buildModal", ng-click='BuildVariableScript(mVariable.script)') Compile
+           .col-xs-3
+             button.btn.btn-primary(style='margin-right: 4px;', ng-click='addVariable(mVariable)', ng-disabled="!mVariable.script || !mVariable.filepath || !mVariable.name") Save Variable
+             button.btn.btn-primary(style='margin-right: 2.5px;', ng-click='reset()') Reset
+      br
+      accordion-group(heading='Existing Variable Settings', is-open='false', is-disabled='false')
+        br
+        table(class="table table-striped table-hover ", style="table-layout:fixed")
+          thead.tableheading
+            tr(style= "border-bottom: 1px solid #ccc;")
+              th 
+              th Variable Name
+              th Description
+              th Active
+          tbody
+            tr(ng-repeat='data in initialData', style="padding:10px 10px 30px 10px; border-bottom: 1px solid #ccc;")
+              td(style="width:5%")
+                span
+                  div
+                    button(type="button", class="btn-small btn-primary", ng-click="editVariableModal(data)")
+                      span(class="fa fa-pencil-square-o")
+              td(style="width:35%")
+                span {{data.name}}
+              td(style="width:20%")
+                span {{data.description}}
+              td(style="width:15%")
+                span {{data.active}}

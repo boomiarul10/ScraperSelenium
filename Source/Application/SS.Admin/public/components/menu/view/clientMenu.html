@@ -1,0 +1,16 @@
+﻿<!--<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">-->
+    <div class="nav navbar-nav side-nav">
+        <select class="form-control" id="client sel1" ng-model="mClient" ng-options="client.name for client in clients" ng-change="DropDownChanged()">
+            <option value="" disabled selected ng-hide="mClient">Select Client</option>
+        </select>
+
+        <div ng-show="isClientSelected">
+            <ul class="nav navbar-nav side-nav-client">
+                <li ng-class="{active : activeMenu === 'Clients'}"><a href="client/{{mClient.id}}" ng-click="activeMenu = 'Clients'" style="color: white"><i class="fa fa-tasks"></i> Client Details</a></li>
+                <li ng-class="{active : activeMenu === 'Bots'}"><a href="bot/{{mClient.id}}" ng-click="activeMenu = 'Bots'" style="color: white"><i class="fa fa-cogs"></i>  Bot Management</a></li>
+                <li ng-class="{active : activeMenu === 'Schedules'}"><a href="schedule/{{mClient.id}}" ng-click="activeMenu = 'Schedules'" style="color: white"><i class="fa fa-calendar"></i> Schedule</a></li>
+                <li ng-class="{active : activeMenu === 'History'}"><a href="history/{{mClient.id}}" ng-click="activeMenu = 'History'" style="color: white"><i class="fa fa-history"></i> History</a></li>
+            </ul>
+        </div>
+    </div>
+<!--</div>-->

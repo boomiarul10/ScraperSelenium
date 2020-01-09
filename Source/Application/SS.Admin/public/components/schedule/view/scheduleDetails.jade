@@ -1,0 +1,25 @@
+﻿script(type="text/ng-template", id="Schedule_renderer.html")
+  tr.input-group(style='padding-right: 20px;')
+    td
+      input.form-control(placeholder='16:00', ng-model='schedule.cron_expression', title='Client Name', required='')
+    td(style="padding-left:10px")
+      button.form-control.btn.btn-primary(ng-click='RemoveSchedule(schedule)') delete
+      br
+      br
+
+div(ng-controller="scheduleController")
+  section
+    div.pageheading 
+      .left
+        .text Scrape Schedules
+    div.pageblock
+      table(ng-repeat="schedule in schedules" class="list-group" ui-tree-node ng-include="'Schedule_renderer.html'")
+      br
+      br
+      span
+        button.btn.btn-primary(ng-click='AddNewSchedule()') Add Schedule 
+      span(style="padding-left:10px")
+        button.btn.btn-primary(ng-click='SaveSchedules()') Save
+      span(style="padding-left:10px")
+        button.btn.btn-primary(ng-click='Reset()') Reset
+

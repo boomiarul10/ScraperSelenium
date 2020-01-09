@@ -1,0 +1,57 @@
+﻿div(ng-controller="executionLogsHistoryController")
+  div.pageheading
+    .left
+      .text Bot Execution History
+  div.pageblock 
+    h3.text(style="font-size:18px;") Bot Execution Details
+    br
+    table(class="table table-striped table-hover")
+      thead.tableheading
+        tr(style= "border-bottom: 1px solid #ccc;")
+          th Bot Name
+          th Start Time
+          th Completion Time
+          th ATS Job Count
+          th Failed Jobs Count
+          th Extracted Records
+          th Success?
+      tbody
+        tr(style="background-color: #eaeaea; border-bottom: 1px solid #ccc;")
+          td(style="color: #2c3e50;")  {{botExecDetails.execBotConfig.name}}
+          td(style="color: #2c3e50;", ng-bind="botExecDetails.created_at | date:'MM/dd/yyyy hh:mm:ss a'")
+          td(style="color: #2c3e50;", ng-bind="botExecDetails.updated_at | date:'MM/dd/yyyy hh:mm:ss a'")
+          td(style="color: #2c3e50;") {{botExecDetails.atsjobcount}}
+          td(style="color: #2c3e50;") {{botExecDetails.failedjobcount}}
+          td(style="color: #2c3e50;")  {{botExecDetails.jobcount}}
+          td(style="color: #2c3e50;")  
+            span(ng-show="botExecDetails.botexecutionstatusid=='1'") Completed
+            span(ng-show="botExecDetails.botexecutionstatusid=='2'") Queued
+            span(ng-show="botExecDetails.botexecutionstatusid=='3'") Failed
+            span(ng-show="botExecDetails.botexecutionstatusid=='4'") In Progress
+            span(ng-show="botExecDetails.botexecutionstatusid=='5'") Stopped
+    div(ng-if="botExecDetails.botexecutionstatusid == 4")
+      progressbar.progress-striped.active(animate='true', value='botExecDetails.currentProgress', type='success', style='height:23px')
+        br
+        b(style="font-size:18px; color: #4f4c4c; margin-left: 545px;") {{botExecDetails.currentProgress | number:0}}%  
+  div(ng-if="botDetaillogs.length >= 1") 
+    div.pageblock
+      h3.text(style="font-size:18px;") Bot Execution Logs
+      br
+      table(class="table table-striped table-hover ")
+        thead.tableheading
+          tr(style= "border-bottom: 1px solid #ccc;")
+            th Type
+            th Time
+            th Message
+        tbody
+          tr(ng-repeat= 'log in botDetaillogs', style= "border-bottom: 1px solid #ccc;")
+            td 
+              span(ng-show="log.logtypeid=='1'", style='color:red') Error
+              span(ng-show="log.logtypeid=='2'", style='color:blue') Warn
+              span(ng-show="log.logtypeid=='3'", style='color:Black') Info
+              span(ng-show="log.logtypeid=='4'", style='color:brown') Silly
+              span(ng-show="log.logtypeid=='5'", style='color:Green') Debug
+            td(ng-bind="log.updated_at | date:'MM/dd/yyyy hh:mm:ss a'")
+            td {{log.message}}
+  div(ng-if="botDetaillogs.length < 1")
+    h3 No Logs found

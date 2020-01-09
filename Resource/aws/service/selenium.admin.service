@@ -1,0 +1,12 @@
+[Unit]
+Description=Selenium Scraper Admin
+
+[Service]
+Type=simple
+User=selenium
+
+Environment=DISPLAY=:44
+ExecStart=/usr/local/bin/node /opt/selenium/application/SS.Admin/bin/www
+
+[Install]
+WantedBy=multi-user.target

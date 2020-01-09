@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <Name>SS.Framework</Name>
+    <RootNamespace>KA.Framework</RootNamespace>
+    <Environment>
+    </Environment>
+    <ScriptArguments>
+    </ScriptArguments>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>489cb99f-bd88-4be3-8cad-8d85070ec0b0</ProjectGuid>
+    <ProjectHome>
+    </ProjectHome>
+    <StartupFile>app.js</StartupFile>
+    <StartWebBrowser>False</StartWebBrowser>
+    <SearchPath>
+    </SearchPath>
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <ProjectTypeGuids>{3AF33F2E-1136-4D97-BBB7-1795711AC8B8};{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}</ProjectTypeGuids>
+    <ProjectView>ShowAllFiles</ProjectView>
+    <StartWebBrowser>False</StartWebBrowser>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="app.js" />
+    <Compile Include="bot\AlignTechnologyScraper.js" />
+    <Compile Include="bot\AmcorScraper.js" />
+    <Compile Include="bot\AmericanCancerSocietyScraper.js" />
+    <Compile Include="bot\AngiesListJobScraper.js" />
+    <Compile Include="bot\ArmourJobScraper.js" />
+    <Compile Include="bot\BayStateScraper.js" />
+    <Compile Include="bot\BDBardScraper.js" />
+    <Compile Include="bot\BiomarinJobScraper.js" />
+    <Compile Include="bot\BoeingDefenseAustraliaScraper.js" />
+    <Compile Include="bot\BoeingJeppesonScraper.js" />
+    <Compile Include="bot\BoeingVancouverJeppesenJobScraper.js" />
+    <Compile Include="bot\BoystownScraper.js" />
+    <Compile Include="bot\BrookhavenNationalLabsPostDocScraper.js" />
+    <Compile Include="bot\BrookhavenNationalLabsScraper.js" />
+    <Compile Include="bot\CalgaryAirport1Scraper.js" />
+    <Compile Include="bot\CFHAScraper.js" />
+    <Compile Include="bot\CitiFeedDownload.js" />
+    <Compile Include="bot\CitiSpanishScraper.js" />
+    <Compile Include="bot\CITIUatTaleoFeedDownloader.js" />
+    <Compile Include="bot\ConduentJobScraper.js" />
+    <Compile Include="bot\CrateAndBarrel2Scraper.js" />
+    <Compile Include="bot\CrateAndBarrelScraper.js" />
+    <Compile Include="bot\CSCDXCJobScraper.js" />
+    <Compile Include="bot\EnduranceScraper.js" />
+    <Compile Include="bot\FMGlobalScraper.js" />
+    <Compile Include="bot\GapIncScraper.js" />
+    <Compile Include="bot\GeneralAtomicsJobScraper.js" />
+    <Compile Include="bot\GeneralAtomicsJobScraper_75566.js" />
+    <Compile Include="bot\GreatWolfScraper.js" />
+    <Compile Include="bot\GreeneKingScraper1.js" />
+    <Compile Include="bot\HealthCareSourceScraper.js" />
+    <Compile Include="bot\LaheyBehaviouralScraper_50009.js" />
+    <Compile Include="bot\LaheyScraper_1.js" />
+    <Compile Include="bot\LaureateAustraliaScraper.js" />
+    <Compile Include="bot\LedvanceScraper.js" />
+    <Compile Include="bot\LoramDayforceScraper.js" />
+    <Compile Include="bot\McLeodHealthHospitalScraper.js" />
+    <Compile Include="bot\MSATSVScraper.js" />
+    <Compile Include="bot\MSNew.js" />
+    <Compile Include="bot\NCCIScraper.js" />
+    <Compile Include="bot\NewBalanceJobScraper.js" />
+    <Compile Include="bot\NewBalanceJobScraper2.js" />
+    <Compile Include="bot\NewBalanceRetailJobScraper.js" />
+    <Compile Include="bot\NuanceGermanyScraper.js" />
+    <Compile Include="bot\NuanceScraper.js" />
+    <Compile Include="bot\NuanceUKJobScraper.js" />
+    <Compile Include="bot\OrangeLakeJobScraper.js" />
+    <Compile Include="bot\OwensCorningInternationalScraper.js" />
+    <Compile Include="bot\OwensCorningJobScraperUS.js" />
+    <Compile Include="bot\PattersonJobScraper_76075.js" />
+    <Compile Include="bot\PetsmartScraper.js" />
+    <Compile Include="bot\PostHoldingsCorpScraper.js" />
+    <Compile Include="bot\PremeraScraper.js" />
+    <Compile Include="bot\PremisehealthScraper.js" />
+    <Compile Include="bot\PrimarkScraper.js" />
+    <Compile Include="bot\SampleJDBot.js" />
+    <Compile Include="bot\santanderScraper.js" />
+    <Compile Include="bot\ScrippsJobScraper.js" />
+    <Compile Include="bot\SelectComfortJobScraper2.js" />
+    <Compile Include="bot\suncoastscraper.js" />
+    <Compile Include="bot\SWSTaleo1Scraper.js" />
+    <Compile Include="bot\TakeCareHealthScraper.js" />
+    <Compile Include="Bot\tmpjob.js" />
+    <Compile Include="bot\AmazonScraper_Spanish.js" />
+    <Compile Include="bot\tmp_amazon.js" />
+    <Compile Include="bot\tmp_bmchp.js" />
+    <Compile Include="bot\tmp_csra.js" />
+    <Compile Include="bot\tmp_CVHP.js" />
+    <Compile Include="bot\tmp_hackensack.js" />
+    <Compile Include="bot\tmp_InteriorHealth.js" />
+    <Compile Include="bot\tmp_johnhopkins.js" />
+    <Compile Include="bot\tmp_mexicouniversity.js" />
+    <Compile Include="bot\TMP_Sample.js" />
+    <Compile Include="bot\tmp_tmpscraper.js" />
+    <Compile Include="bot\tmp_workday.js" />
+    <Compile Include="bot\UNCCaldwellMemorialScraper.js" />
+    <Compile Include="bot\UNCHighPointRegionalScraper.js" />
+    <Compile Include="bot\WakemedScraper.js" />
+    <Compile Include="bot\WalgreensScraper.js" />
+    <Compile Include="components\ss.api.service.js" />
+    <Compile Include="components\ss.scrape.js" />
+    <Compile Include="components\ss.service.js" />
+    <Compile Include="components\ss.resource.js" />
+    <Compile Include="components\ss.util.js" />
+    <Compile Include="init.js" />
+    <Compile Include="snippet\feedgenerator.js" />
+    <Compile Include="snippet\writeObjectToFile.js" />
+    <Compile Include="snippet\feedgeneratorwithasync.js" />
+    <Compile Include="snippet\writeObjectToFileWithAsync.js" />
+    <Compile Include="variable\job.js" />
+    <Compile Include="variable\job_jd.js" />
+    <Content Include=".gitignore" />
+    <Content Include="config.staging.json" />
+    <Content Include="config.prod.json" />
+    <Content Include="config.json" />
+    <Content Include="package.json" />
+    <Content Include="README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bot\" />
+    <Folder Include="components\" />
+    <Folder Include="typings\" />
+    <Folder Include="typings\globals\" />
+    <Folder Include="typings\globals\async\" />
+    <Folder Include="typings\globals\he\" />
+    <Folder Include="typings\globals\moment\" />
+    <Folder Include="typings\globals\node\" />
+    <Folder Include="typings\globals\request-promise\" />
+    <Folder Include="variable\" />
+    <Folder Include="snippet\" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="typings\globals\async\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\he\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\moment\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\node\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\request-promise\index.d.ts" />
+    <TypeScriptCompile Include="typings\index.d.ts" />
+  </ItemGroup>
+  <!-- Do not delete the following Import Project.  While this appears to do nothing it is a marker for setting TypeScript properties before our import that depends on them. -->
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="False" />
+  <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsTools.targets" />
+</Project>

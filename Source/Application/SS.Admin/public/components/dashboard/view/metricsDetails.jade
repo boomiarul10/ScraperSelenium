@@ -1,0 +1,74 @@
+﻿div(ng-controller= "metricsController")
+  h3 Metrics
+  //nvd3(options="options", data="data")
+  br
+  .panel.panel-primary(style = "width: 80%; border-color: #fafbfc;")
+    .panel-heading(style = "height: 100%;")
+      h3.panel-title Current Execution Progress
+    .panel-body
+      div#initial-container(ng-if = "selectedCurentExecutionProgress.length > 0")
+        nvd3#left-container(options="options", data="data1")
+        table#right-container(class="table table-striped table-hover ", style="table-layout:fixed;")
+          thead.tableheading
+            tr(style= "border-bottom: 1px solid #ccc;")
+              th Execution ID
+              th Client Name
+              th Bot Name
+              th Status
+          tbody
+            tr(ng-repeat="scheduleExecution in selectedCurentExecutionProgress.slice(((pagination.currentPage-1)*itemsPerPage), ((pagination.currentPage)*itemsPerPage))", style="padding:10px 10px 30px 10px; border-bottom: 1px solid #ccc;")
+              td 
+                span {{scheduleExecution.executionid}}
+              td 
+                span {{scheduleExecution.clientname}}
+              td 
+                span {{scheduleExecution.botname}}
+              td 
+                span(ng-show="scheduleExecution.scrapestatus=='2'") Queued
+                span(ng-show="scheduleExecution.scrapestatus=='4'") In Progress
+        div(style="width: 50%;margin: 0 auto;", ng-if = "selectedCurentExecutionProgress.length > itemsPerPage")
+          pagination(class="pagination-small" boundary-links="false" total-items="selectedCurentExecutionProgress.length" ng-model="pagination.currentPage" items-per-page="itemsPerPage" max-size="maxPageDisplay")
+      div#initial-container(ng-if = "selectedCurentExecutionProgress.length == 0")  
+        span Currently No Bots are Running 
+
+  br
+  .panel.panel-primary(style = "width: 80%; border-color: #fafbfc;")
+    .panel-heading(style = "height: 100%;")
+      h3.panel-title Last Bot Execution Status
+    .panel-body
+      div#initial-container(ng-if = "selectedexecutionDetails.length > 0")
+        nvd3#left-container(options="options1", data="data")
+        table#right-container(class="table table-striped table-hover ", style="table-layout:fixed;")
+          thead.tableheading
+            tr(style= "border-bottom: 1px solid #ccc;")
+              th Execution ID
+              th Client Name
+              th Bot Name
+              th Status
+          tbody
+            tr(ng-repeat="scheduleExecution in selectedexecutionDetails.slice(((executionDetailscurrentPage-1)*executionDetailsitemsPerPage), ((executionDetailscurrentPage)*executionDetailsitemsPerPage))", style="padding:10px 10px 30px 10px; border-bottom: 1px solid #ccc;")
+              td 
+                span {{scheduleExecution.executionid}}
+              td 
+                span {{scheduleExecution.clientname}}
+              td 
+                span {{scheduleExecution.botname}}
+              td 
+                span(ng-show="scheduleExecution.scrapestatus=='1'") Success
+                span(ng-show="scheduleExecution.scrapestatus=='3'") Failure
+        div(style="width: 50%;margin: 0 auto;", ng-if = "selectedexecutionDetails.length > executionDetailsitemsPerPage")
+          pagination(total-items="selectedexecutionDetails.length" ng-change="pageChanged()" ng-model="executionDetailscurrentPage" items-per-page="executionDetailsitemsPerPage" max-size="maxPageDisplay")
+      div#initial-container(ng-if = "selectedexecutionDetails.length == 0")  
+        span No Bots Triggered Yet
+
+//  br
+  //.panel.panel-primary(style = "width: 80%; border-color: #fafbfc;")
+    //.panel-heading(style = "height: 100%;")
+      //h3.panel-title Bot Scrape Variance
+//    .panel-body
+  //    div#initial-container(ng-if = "executionVarianceDetails.length > 0")
+    //    nvd3#left-container(options="options2", data="data2")
+      //div#initial-container(ng-if = "executionVarianceDetails.length == 0")  
+        //span No Bots Executed Yet
+  //nvd3(options="options", data="data2")
+  //nvd3(options="options1", data="data3")

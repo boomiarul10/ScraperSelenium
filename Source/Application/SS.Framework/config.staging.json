@@ -1,0 +1,19 @@
+﻿{
+  "logPath": "/home/centos/log/log.txt",
+  "downloadPath": "/mnt/selenium/aws/",
+  "outputRoot": "/mnt/selenium/staging-feed/",
+  "dblogEnabled": true,
+  "filelogEnabled": true,
+  "api": {
+    "bot": {
+      "getBotByScheduleId": "http://172.17.4.21:3000/api/botExecution/{0}",
+      "postBotExecutionLogs": "http://172.17.4.21:3000/api/executionlog/",
+      "updateBotSchedule": "http://172.17.4.21:3000/api/executionstatus/{0}",
+      "logExecutionMachineProcess": "http://172.17.4.21:3000/api/updatebotexecutionserverdetail"
+    }
+  },
+  "enableGrid": true,
+  "hubUrl": "http://172.17.4.21:9000/wd/hub",
+  "jdhubUrl": "http://172.17.4.21:9000/wd/hub",
+  "debugMode": "true"
+}

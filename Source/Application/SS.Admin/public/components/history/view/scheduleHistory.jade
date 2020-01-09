@@ -1,0 +1,31 @@
+﻿div(ng-controller="historyController")
+  div.pageheading 
+    .left
+      .text Schedule Bot Execution Details
+  button.btn.btn-primary
+    a(href='history/{{clientID}}' style="color:#fff") back to Schedule history
+  br
+  br
+  div.pageblock
+    table(class="table table-striped table-hover")
+      thead.tableheading
+        tr(style= "border-bottom: 1px solid #ccc;")
+          th Execution ID
+          th Bot Name
+          th Start Time
+          th Completion Time
+          th Failed Jobs Count
+          th Extracted Records
+          th Success?
+          th Go To Logs
+      tbody
+        tr(style="background-color: #eaeaea; border-bottom: 1px solid #ccc;" ng-repeat= 'botDetail in botDetails')
+          td(style="color: #2c3e50;")  {{botDetail.botexecutionid}}
+          td(style="color: #2c3e50;")  {{botDetail.botname}}
+          td(style="color: #2c3e50;", ng-bind="botDetail.createddate | date:'MM/dd/yyyy hh:mm:ss a'")
+          td(style="color: #2c3e50;", ng-bind="botDetail.updateddate | date:'MM/dd/yyyy hh:mm:ss a'")
+          td(style="color: #2c3e50;") {{botDetail.failedjobcount}}
+          td(style="color: #2c3e50;")  {{botDetail.jobcount}}
+          td(style="color: #2c3e50;")  {{botDetail.statusname}}
+          td(style="color: #2c3e50;")
+            a(href="/bothistorylogs/{{botDetail.botexecutionid}}") Go To Logs

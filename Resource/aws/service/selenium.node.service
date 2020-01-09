@@ -1,0 +1,13 @@
+[Unit]
+Description=Selenium Node
+
+[Service]
+Type=simple
+#User=selenium
+User=root
+
+Environment=DISPLAY=:44
+ExecStart=/usr/bin/java -Dwebdriver.chrome.driver=/opt/selenium/resource/selenium-grid/chromedriver -jar /opt/selenium/resource/selenium-grid/selenium-server-standalone-3.0.1.jar -role node -nodeConfig /opt/selenium/resource/selenium-grid/node.config.json
+
+[Install]
+WantedBy=multi-user.target

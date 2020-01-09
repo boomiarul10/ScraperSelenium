@@ -1,0 +1,85 @@
+﻿div(ng-controller="dashboardHistoryController")
+  h3 History
+  div.pageblock(style="width:98%; margin-right:2%;")
+    table
+      tr
+        td
+          div(style="float: left; margin-left: 10px;")
+            label Client Name 
+            select(class="form-control", style="width: 150px", id="client sel1", ng-model="executionCriteria.client", ng-options="client.name for client in clients", ng-change="GetBots(executionCriteria)")
+              option(value='', selected='') Select
+          div(ng-show ="BotName", style="float: left; margin-left: 10px;")
+            label Bot Name
+            select(ng-show ="BotName", style="width: 150px",class="form-control", id="client sel1", ng-model="executionCriteria.bot", ng-options="bot.name for bot in bots")
+              option(value='', selected='') Select
+          div(ng-show ="ClientBotName", style="float: left; margin-left: 10px;")
+            label Bot Name
+            select(ng-show ="ClientBotName", style="width: 150px", class="form-control", id="client sel1", ng-model="executionCriteria.bot", ng-options="bot.clientBotConfig.name for bot in bots")
+              option(value='', selected='') Select
+          div(style="float: left; margin-left: 10px;")
+            label Server Name
+            select(class="form-control", style="width: 150px", id="client sel1", ng-model="executionCriteria.serverName", ng-options="server.name for server in batchServerDetails")
+              option(value='', selected='') Select
+          div(style="float: left; margin-left: 10px;")
+            label Execution Status
+            select(class="form-control", style="width: 150px", id="client sel1", ng-model="executionCriteria.executionStatus", ng-options="ExecutionStatus.name for ExecutionStatus in botExecutionStatus")
+              option(value='', selected='') Select
+          div(style="float: left; margin-left: 10px;")
+            label Start Date
+            p(class="input-group")
+              input.form-control(type='date', style="width: 200px", ng-model='executionCriteria.createdAT', is-open='opened', ng-required='true', close-text='Close')
+          div(style="float: left; margin-left: 10px;")
+            label End Date
+            p(class="input-group")
+              input.form-control(type='date', style="width: 200px", ng-model='executionCriteria.updatedAT', is-open='opened', ng-required='true', close-text='Close')
+          div(style="float: left; margin-left: 10px;")
+            label Sort Selection
+            select(class="form-control", style="width: 150px", id="sort select", ng-model="executionCriteria.selectSort", ng-options="key as value for (key , value) in sortSelect")
+              option(value='', selected='') Select
+          div(style="float: left; margin-left: 10px;")
+            label Sort Order
+            select(class="form-control", style="width: 150px", id="sort order", ng-model="executionCriteria.selectOrder", ng-options="key as value for (key , value) in sortOrder")
+              option(value='', selected='') Select
+          div(style="float: left; margin-top: 25px; margin-left: 200px;")
+            button.btn.btn-primary(ng-click='GetExecutionLogs(executionCriteria)', style="padding-right: 5.5%; text-transform: uppercase") Search
+  div(style="width:98%; margin-right:2%;", ng-if="executionLogs.length >= 1")
+    table(class="table table-striped table-hover ", style="table-layout:fixed")
+      thead.tableheading
+        tr(style= "border-bottom: 1px solid #ccc;")
+          th ID
+          th Client
+          th Bot
+          th Server Name
+          th Job Count
+          th ATS Count
+          th(style="width:200px;") Started At
+          th(style="width:200px;") Ended At
+          th Status
+      tbody
+          tr(ng-repeat='execution in executionLogs.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage))', style="border-bottom: 1px solid #ccc;")
+            td 
+              span {{execution.executionid}}
+            td 
+              span {{execution.clientname}}
+            td 
+              span {{execution.botname}}
+            td 
+              span {{execution.servername}}
+            td 
+              span {{execution.jobcount}}
+            td 
+              span {{execution.atsjobcount}}
+            td
+              span(style="font-size: 0.90em; width:200px; margin-top:2%", ng-bind="execution.starttime | date:'MM/dd/yyyy hh:mm:ss a'")
+            td
+              span(style="font-size: 0.90em; width:200px; margin-top:2%", ng-bind="execution.endtime | date:'MM/dd/yyyy hh:mm:ss a'")
+            td 
+              span(ng-show="execution.statusid=='1'") Completed
+              span(ng-show="execution.statusid=='2'") Queued
+              span(ng-show="execution.statusid=='3'") Failed
+              span(ng-show="execution.statusid=='4'") In Progress
+              span(ng-show="execution.statusid=='5'") Stopped
+    div(style="width: 50%;margin: 0 auto;")
+      pagination(total-items="executionLogs.length" ng-model="currentPage" items-per-page="itemsPerPage" max-size="5")
+  div.pageblock(style="width:70%; float:right; margin-right:2%;", ng-if="executionLogs.length < 1")
+    span No Execution found.

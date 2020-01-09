@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+html(ng-app="ka.app")
+  head
+    meta(charset='utf8')
+    base(href='/')
+    title Dashboard - Extractor Admin
+    link(rel='stylesheet', type='text/css', href='/css/local.css')
+    link(rel='stylesheet', type='text/css', href='/css/bootstrap.flatly.min.css')
+    link(rel='stylesheet', type='text/css', href='/js/lib/sweetalert/sweet-alert.css')
+    link(rel='stylesheet', type='text/css', href='/js/lib/ui-grid/ui-grid.min.css')
+    link(rel='stylesheet', type='text/css', href='/js/lib/font-awesome/css/font-awesome.css')
+    link(href="/js/lib/nvd3/build/nv.d3.min.css", rel="stylesheet", type="text/css")
+  body(style="background-color:#f2f2f2;")
+    block body
+    div(id='progressdiv', style='display:none;')
+      div(style='padding-left:50%;padding-top:400px;')    
+        i.fa.fa-circle-o-notch.fa-spin.fa-3x.fa-fw

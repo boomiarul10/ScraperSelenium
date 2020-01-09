@@ -1,0 +1,55 @@
+﻿div
+  .modal-header
+    h4.modal-title Editing Bot {{vm.entity.clientBotConfig.name}}
+    |   
+  .modal-body
+    div(ng-controller="botMangementController")
+      accordion(close-others="false")
+        accordion-group(heading='Bot Details', is-open='true', is-disabled='false')
+          div
+            table(cellpadding='10')
+              tr
+                td
+                  .input-group(style='padding-right: 20px;')
+                    span.input-group-addon(style='width:150px; text-align: left;') Bot Name
+                    input.form-control(disabled, placeholder='Bot Name', ng-model='vm.entity.clientBotConfig.name')
+                td
+                  .input-group(style='padding-right: 20px;')
+                    span.input-group-addon(style='width:150px; text-align: left;') Browser Type
+                    select.form-control.input-sm(type='checkbox', ng-model='vm.entity.clientBotConfig.browsertype')
+                      option(value='Chrome') Chrome
+                      option(value='Firefox') Firefox
+                      option(value='Internet Explorer') Internet Explorer
+                      option(value='PhantomJS') PhantomJS
+                td
+                  .input-group(style='padding-right: 20px;')
+                    span.input-group-addon(style='width:150px; text-align: left;') Bot Type
+                    select.form-control.input-sm(type='checkbox', ng-model='vm.entity.clientBotConfig.bottypeid',ng-options='bottypes.id as bottypes.name for bottypes in bottype')                     
+
+              tr
+                td(colspan='2')
+                  br
+              tr
+                td
+                  input(placeholder="Active",type='checkbox',class='', ng-model='vm.entity.clientBotConfig.active', required='', style='margin-left:20px') 
+                  span    Active
+              tr
+                td(colspan='2')
+                  br
+        accordion-group(heading='Bot Script', is-open='true', is-disabled='false')
+          div.accordianEditor( id="editor", ng-init="initdiv()", ui-ace="{ showGutter: true, mode: 'javascript', theme: 'twilight', showPrintMargin: false }", ng-model='vm.entity.clientBotConfig.script', style=" display: 'inline-block', width:75%")
+          div.accordianHelper
+            div.accordianHelper2
+              span.help-text Snippets
+            div.accordianHelper1(keep-scroll, heading='Snippet', is-open = 'true', is-disabled = 'false', style="height: 236px;")
+              div(scroll-item, ng-repeat='snippet in snippets')
+                span.input-group-addon(style="word-break: break-all; white-space: normal;", ng-click='open(snippet.id)',tooltip='{{snippet.description}}', tooltip-placement='down') {{snippet.name}} 
+  .modal-footer
+    button.btn.btn-primary(type="button", data-toggle="modal", data-target="#buildModal", ng-click='vm.BuildBotScript(vm.entity.clientBotConfig.script)',ng-show='false') Compile
+    button.btn.btn-success(style='margin-right: 2.5px;', ng-click='vm.save(vm.entity)') Save
+    button.btn.btn-primary(style='margin-right: 2.5px;', ng-click='vm.reset()') Reset
+    button.btn.btn-primary(type="button", data-toggle="modal", data-target="#deleteModal", ng-click='vm.deleteBot(vm.entity)') Delete
+    button.btn.btn-warning(ng-click='vm.close()') Cancel
+
+
+

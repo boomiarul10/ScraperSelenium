@@ -1,0 +1,78 @@
+﻿div(ng-controller="clientsettingController")
+  div.pageheading 
+    .left
+      .text Client Details
+  div.pageblock
+    accordion(close-others="true")
+      accordion-group(heading='Add New Client', is-disabled='false')
+        form(name='clientForm', ng-submit='submitForm()', novalidate='')
+          table(cellpadding='10')
+            tr
+              td
+                .form-group(ng-class="{ 'has-error' : clientForm.name.$invalid && !clientForm.name.$pristine }")
+                  .input-group(style='padding-right: 20px;')
+                    span.input-group-addon(style='width:150px; text-align: left;') Client Name
+                    input.form-control(placeholder='Name', ng-model='clientdetail.name', title='Client Name', type='text', name='name', required='', tooltip='Client Name is required', tooltip-placement='top')
+              td
+                .form-group(ng-class="{ 'has-error' : clientForm.retry.$invalid && !clientForm.retry.$pristine }")
+                  .input-group(style='padding-right: 20px;')
+                    span.input-group-addon(style='width:150px; text-align: left;') Retry
+                    input.form-control(placeholder='Retry Count', ng-model='clientdetail.retry', type='number', name='retry', required='', tooltip='Retry is required', tooltip-placement='right', min="0")
+            tr
+              td(colspan='2')
+                br
+            tr
+              td
+                .form-group(ng-class="{ 'has-error' : clientForm.intreval.$invalid && !clientForm.intreval.$pristine }")
+                  .input-group(style='padding-right: 20px;')
+                    span.input-group-addon(style='width:150px; text-align: left;') Time Interval
+                    input.form-control(placeholder='Interval Count in Seconds', ng-model='clientdetail.intreval', type='number', name='intreval', required='', tooltip='Interval is required', tooltip-placement='right', min="0")
+            tr
+              td(colspan='2')
+                br
+            tr
+              td
+                .form-group(ng-class="{ 'has-error' : clientForm.active.$invalid && !clientForm.active.$pristine }")
+                  input(placeholder="Active",type='checkbox',class='', ng-init="clientdetail.active=false", ng-model='clientdetail.active', name='active', required='', ng-checked="options.one.selected")
+                  span    Active
+            tr
+              td(colspan='2')
+                br
+            tr
+              td
+                .form-group(ng-class="{ 'has-error' : clientForm.isconcurrent.$invalid && !clientForm.isconcurrent.$pristine }")
+                  input(placeholder="IsConcurrent",type='checkbox',class='', ng-init="clientdetail.isconcurrent=false", ng-model='clientdetail.isconcurrent', name='concurrent', required='', ng-checked="options.one.selected")
+                  span    IsConcurrent
+            tr.sample-table
+              td(colspan='2')
+               br
+               button.btn.btn-primary(ng-click='addClient(clientdetail)', ng-disabled="!clientdetail.name || !clientdetail.intreval || !clientdetail.retry") Save
+        br
+      br
+      accordion-group(heading='Existing Client Settings', is-open='false', is-disabled='false')
+        table(class="table table-striped table-hover ", style="table-layout:fixed")
+          thead.tableheading
+            tr(style= "border-bottom: 1px solid #ccc;")
+              th 
+              th Client Name
+              th Active
+              th Retry
+              th Interval
+              th IsConcurent
+          tbody
+            tr(ng-repeat='data in clientdetailsData', style="padding:10px 10px 30px 10px; border-bottom: 1px solid #ccc;")
+              td(style="width:5%")
+                span
+                  div
+                    button(type="button", class="btn-small btn-primary", ng-click="editClientModal(data)")
+                      span(class="fa fa-pencil-square-o")
+              td(style="width:20%")
+                span {{data.name}}
+              td(style="width:10%")
+                span {{data.active}}
+              td(style="width:15%")
+                span {{data.retry}}
+              td(style="width:20%") 
+                span {{data.intreval}}
+              td(style="width:20%") 
+                span {{data.isconcurrent}}

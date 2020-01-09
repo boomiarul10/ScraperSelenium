@@ -1,0 +1,49 @@
+﻿div
+  .modal-header
+    h3.modal-title Editing Client {{vm.entity.name}}
+    |   
+  .modal-body
+    div(ng-controller="clientsettingController")
+      div
+        form.pageblock1(name='clientForm', ng-submit='submitForm()', novalidate='')
+          table(cellpadding='10')
+            tr
+              td
+                .form-group.input-group(style='padding-right: 20px;')
+                  span.input-group-addon(style='width:150px; text-align: left;') Client Name
+                  input.form-control(placeholder='Bot Name', ng-model='vm.entity.name')
+              td
+                .form-group(ng-class="{ 'has-error' : clientForm.retry.$invalid && !clientForm.retry.$pristine }")
+                  .input-group
+                    span.input-group-addon(style='width:150px; text-align: left;') Retry
+                    input.form-control(placeholder='Retry Count', ng-model='vm.entity.retry', required='',name='retry')
+            tr
+              td(colspan='2')
+                br
+            tr
+              td
+                .form-group(ng-class="{ 'has-error' : clientForm.intreval.$invalid && !clientForm.intreval.$pristine }")
+                  .input-group
+                    span.input-group-addon(style='width:150px; text-align: left;') Time Interval
+                    input.form-control(placeholder='Time Interval', ng-model='vm.entity.intreval', required='',name='intreval')
+            tr
+              td(colspan='2')
+                br
+            tr
+              td
+                input(placeholder="Active",type='checkbox',class='', ng-model='vm.entity.active', required='', style='margin-left:20px') 
+                span    Active
+              td
+                input(placeholder="Concurrent",type='checkbox',class='', ng-model='vm.entity.isconcurrent', required='', style='margin-left:20px') 
+                span    Concurrent
+            tr
+              td(colspan='2')
+                br
+          hr
+
+          button.btn.btn-success(style='margin-right: 2.5px;', ng-click='vm.save(vm.entity)',ng-disabled="!vm.entity.name || !vm.entity.intreval || !vm.entity.retry") Save
+          button.btn.btn-success(style='margin-right: 2.5px;', ng-click='vm.reset(vm.entity)') Reset
+          button.btn.btn-warning(ng-click='vm.close()') Cancel
+
+
+

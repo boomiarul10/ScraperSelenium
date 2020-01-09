@@ -1,0 +1,95 @@
+﻿div(ng-controller="botMangementController")
+
+  div.pageheading 
+    .left
+      .text Bot Settings 
+  div.pageblock
+    accordion(close-others="true")
+      accordion-group(heading='Add New Bot', style='color: white;', is-open='false', is-disabled='false')
+        form(name='botForm', ng-submit='submitForm()', novalidate='')
+          p
+            div.accordianEditor1
+              table(cellpadding='10')
+                tr
+                  td
+                    .form-group(ng-class="{ 'has-error' : botForm.name.$invalid && !botForm.name.$pristine }")
+                      .input-group(style='padding-right: 20px;')
+                        span.input-group-addon(style='width:150px; text-align: left;') Bot Name
+                        input.form-control(placeholder='Name', ng-model='mBot.name', title='Bot Name', type='text', name='name', required='', tooltip='Bot name is required.', tooltip-placement='top')
+                  td
+                    .form-group(ng-class="{ 'has-error' : botForm.browsername.$error.required }")
+                      .input-group(style='padding-right: 20px;')
+                        span.input-group-addon(style='width:150px; text-align: left;') Browser Type
+                        select.form-control(id='client sel1', name='browsername', ng-model='mBot.browsertype', ng-options='browser for browser in browsers', ng-class='{ error: !mBot.browsertype }', required='', tooltip='Browser Type is required.', tooltip-placement='right')
+                          option(value='', disabled='', selected='', ng-hide='mBot.browsertype') Select Browser Type
+                tr                  
+                  td
+                    .form-group(ng-class="{ 'has-error' : botForm.bottype.$error.required }")
+                      .input-group(style='padding-right: 20px;')
+                        span.input-group-addon(style='width:150px; text-align: left;') Bot Type
+                        select.form-control(id='client sel1', name='bottype', ng-model='mBot.bottypeid', ng-options='bottypes.id as bottypes.name for bottypes in bottype', ng-class='{ error: !mBot.bottype }', required='', tooltip='Bot Type is required.', tooltip-placement='right')
+                          option(value='', disabled='', selected='', ng-hide='mBot.bottype') Select Bot Type                    
+                  td
+                    .form-group(ng-class="{ 'has-error' : clientForm.active.$invalid && !clientForm.active.$pristine }")
+                      input(placeholder="Active",type='checkbox',class='', ng-init="mBot.active=false", ng-model='mBot.active', name='active', required='')
+                      span    Active            
+              p
+                div( id="editor", ng-init="initdiv()", ui-ace="{ showGutter: true, mode: 'javascript', theme: 'twilight', showPrintMargin: false, onLoad: aceLoaded }", ng-model='mBot.script', ng-class='{ error: !mBot.script }', required= '', style=" display: 'inline-block', width:75%")
+            div.accordianHelper3
+              div.accordianHelper2
+                span.help-text Variables
+              div.accordianHelper1(keep-scroll, heading='Variable', is-open = 'true', is-disabled = 'false')
+                div(scroll-item, ng-repeat='variable in variabletypes')
+                  span.input-group-addon(style="word-break: break-all; white-space: normal;", ng-click='openVariable(variable.id)',tooltip='{{variable.description}}', tooltip-placement='down') {{variable.name}}   
+              div.accordianHelper2
+                span.help-text Snippets
+              div.accordianHelper1(keep-scroll, heading='Snippet', is-open = 'true', is-disabled = 'false', style="height: 236px;")
+                div(scroll-item, ng-repeat='snippet in snippets')
+                  span.input-group-addon(style="word-break: break-all; white-space: normal;", ng-click='open(snippet.id)',tooltip='{{snippet.description}}', tooltip-placement='down') {{snippet.name}} 
+                tr
+                  td(colspan='2')
+                  br  
+        p
+          .row
+            .col-xs-9
+              button.btn.btn-primary(type="button", data-toggle="modal", data-target="#buildModal", ng-click='BuildBotScript(mBot.script)',ng-show='false') Compile          
+            .col-xs-3
+              button.btn.btn-primary(style='margin-right: 2.5px;', ng-click='addBot(mBot)', ng-disabled="!mBot.script || !mBot.filepath || !mBot.outputpath || !mBot.browsertype || !mBot.name") Save Bot 
+              button.btn.btn-primary(style='margin-right: 2.5px;', ng-click='reset()') Reset
+              tr
+                td(colspan='2')
+                  br  
+      accordion-group(heading='Existing Bot Settings', is-open='true', is-disabled='false')
+        div(ng-if="initialData.length >= 1")
+          br
+          table(class="table table-striped table-hover ", style="table-layout:fixed")
+            thead(style="background: #0895d3;color: #fff;font-weight: 700;font-size: 14px;padding-left: 20px;padding-right: 15px;")
+              tr(style= "border-bottom: 1px solid #ccc;")
+                th(style="width:5%")
+                th(style="width:20%") Bot Name
+                th(style="width:10%")  Active
+                th(style="width:15%") Browser Type   
+                th(style="width:20%") Bot Type            
+                th(style="width:25%")  Trigger Scrape
+                
+            tbody
+              tr(ng-repeat='data in initialData', style="padding:10px 10px 30px 10px; border-bottom: 1px solid #ccc;")
+                td(style="width:5%")
+                  span
+                    div
+                      button(type="button", class="btn-small btn-primary", ng-click="editBotModal(data)")
+                        span(class="fa fa-pencil-square-o")
+                td(style="width:20%")
+                  span {{data.clientBotConfig.name}}
+                td(style="width:10%")
+                  span {{data.clientBotConfig.active}}
+                td(style="width:10%")
+                  span {{data.clientBotConfig.browsertype}}  
+                td(style="width:20%", ng-repeat="bottypes in bottype | filter:{'id':data.clientBotConfig.bottypeid}:true")                    
+                  span {{bottypes.name}}               
+                td(style="width:30%") 
+                  span
+                    button.btn.btn-primary(style='margin-right: 2.5px;', ng-click='triggerScrape(data.clientBotConfig.id)',ng-show="data.clientBotConfig.bottypeid == 1") Trigger Scrape
+                    button.btn.btn-primary(style='margin-right: 2.5px;', ng-click='getBotID(data.clientBotConfig.id)',ng-show="data.clientBotConfig.bottypeid == 2") Get Bot ID
+        div(ng-if="initialData.length < 1")
+          h5 Bot not yet configured for this client

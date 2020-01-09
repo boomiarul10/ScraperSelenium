@@ -1,0 +1,56 @@
+extends layout
+
+block body
+  div(ng-controller="AppCtrl")
+    menu
+    div(ng-show ="ClientPage")
+      clientmenu
+      div(ng-show="isClientSelected", style="padding-top:60px;")
+        .container
+          .row#ClientData
+            .text-left
+              div(ng-view)
+    div(ng-show ="GlobalSetting")
+      globalsettingmenu
+      div.container        
+        .row#ClientData
+          .text-left
+            div(ng-view)
+    div(ng-show ="Dashboard")
+      dashboardmenu
+      div.container1        
+        .row#ClientData
+          .text-left
+            div(ng-view)
+  script(src='js/lib/src-min/ace.js')
+  script(src='js/lib/angular/angular.js')
+  script(src='js/lib/angular/angular-route.js')
+  script(src='js/lib/angular/angular-animate.js')
+  script(src='js/lib/sweetalert/sweet-alert.js')
+  script(src='js/lib/ui-bootstrap-tpls-0.12.0.min.js')
+  script(src='js/lib/ui-grid/ui-grid.min.js')
+  script(src='js/lib/ui-ace/src/ui-ace.js')
+  script(src="js/lib/d3/d3.min.js", charset="utf-8")
+  script(src="js/lib/nvd3/build/nv.d3.min.js")
+  script(src="js/lib/angular-nvd3-1.0.8/src/angular-nvd3.js")
+  script(src='js/app.js')
+  script(src='js/services.js')
+  script(src='js/controllers.js')
+  script(src='js/filters.js')
+  script(src='js/directives.js')
+  script(src='js/lib/jquery/dist/jquery.min.js')
+  script(src='js/lib/bootstrap/dist/js/bootstrap.min.js')
+  script(src='components/client/controller/clientController.js')
+  script(src='components/bot/controller/botMangementController.js')
+  script(src='components/schedule/controller/scheduleController.js')
+  script(src='components/history/controller/historyController.js')
+  script(src='components/history/controller/executionLogsHistoryController.js')
+  script(src='components/globalSettings/controller/clientsettingController.js')
+  script(src='components/globalSettings/controller/variableMangementController.js')
+  script(src='components/globalSettings/controller/snippetMangementController.js')
+  script(src='components/globalSettings/controller/detailedHistoryController.js')
+  script(src='components/bot/controller/snippetController.js')
+  script(src='components/bot/controller/variableController.js')
+  script(src='components/dashboard/controller/metricsController.js')
+  script(src='components/dashboard/controller/executionDetailsController.js')
+  script(src='components/dashboard/controller/dashboardHistoryController.js')

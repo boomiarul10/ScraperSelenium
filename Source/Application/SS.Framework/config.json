@@ -1,0 +1,19 @@
+﻿{
+  "logPath": "c:/log/log.txt",
+  "downloadPath": "d:/download/",
+  "outputRoot": "d:/feeds/",
+  "dblogEnabled": true,
+  "filelogEnabled": true,
+  "api": {
+    "bot": {
+      "getBotByScheduleId": "http://localhost:3000/api/botExecution/{0}",
+      "postBotExecutionLogs": "http://localhost:3000/api/executionlog/",
+      "updateBotSchedule": "http://localhost:3000/api/executionstatus/{0}",
+      "logExecutionMachineProcess": "http://localhost:3000/api/updatebotexecutionserverdetail"
+    }
+  },
+  "enableGrid": true,
+  "hubUrl": "http://localhost:9000/wd/hub",
+  "jdhubUrl": "http://localhost:9002/wd/hub",
+  "debugMode": "true"
+}

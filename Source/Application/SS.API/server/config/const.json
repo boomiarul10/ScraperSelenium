@@ -1,0 +1,6 @@
+﻿{
+  "fileWriterPath": "java -jar /opt/selenium/resource/FileWriter.jar",
+  "botExecutionPath": "java -jar /opt/selenium/resource/BotExecution.jar",
+  "clientExecutionPath": "java -jar /opt/selenium/resource/ClientExecution.jar",
+  "interuptBotExecutionJarPath":  "java -jar /opt/selenium/resource/InteruptBotExecution.jar"
+}

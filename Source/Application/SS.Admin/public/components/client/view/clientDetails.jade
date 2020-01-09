@@ -1,0 +1,53 @@
+﻿div(ng-controller="clientController")
+  div.pageheading 
+    .left
+      .text Client Details
+  form.pageblock(name='clientForm', ng-submit='submitForm()', novalidate='')
+    table(cellpadding='10')
+      tr
+        td
+          .form-group(ng-class="{ 'has-error' : clientForm.name.$invalid && !clientForm.name.$pristine }")
+            .input-group(style='padding-right: 20px;')
+              span.input-group-addon(style='width:150px; text-align: left;') Client Name
+              input.form-control(disabled, placeholder='Name', ng-model='clientDetails.name', title='Client Name', type='text', name='name', required='', tooltip='Client Name is required', tooltip-placement='right')
+        td
+          .form-group(ng-class="{ 'has-error' : clientForm.retry.$invalid && !clientForm.retry.$pristine }")
+            .input-group(style='padding-right: 20px;')
+              span.input-group-addon(style='width:150px; text-align: left;') Retry
+              input.form-control(placeholder='Retry count', ng-model='clientDetails.retry', type='number', name='retry', required='', tooltip='Retry Count is required', tooltip-placement='right', min="0")
+      tr
+        td(colspan='2')
+          br
+      tr
+        td
+          .form-group(ng-class="{ 'has-error' : clientForm.intreval.$invalid && !clientForm.intreval.$pristine }")
+            .input-group(style='padding-right: 20px;')
+              span.input-group-addon(style='width:150px; text-align: left;') Time Interval
+              input.form-control(placeholder='Interval in seconds', ng-model='clientDetails.intreval', type='number', name='intreval', required='', tooltip='Interval is required', tooltip-placement='right', min="0")
+      tr
+        td(colspan='2')
+          br
+      tr
+        td
+          .form-group(ng-class="{ 'has-error' : clientForm.active.$invalid && !clientForm.active.$pristine }")
+            input(placeholder="Active",type='checkbox',class='', ng-init="clientDetails.active=false", ng-model='clientDetails.active', name='active', required='', ng-checked="options.one.selected")
+            span    Active
+      tr
+        td(colspan='2')
+          br
+      tr
+        td
+          .form-group(ng-class="{ 'has-error' : clientForm.isconcurrent.$invalid && !clientForm.isconcurrent.$pristine }")
+            input(placeholder="IsConcurrent",type='checkbox',class='', ng-init="clientDetails.isconcurrent=false", ng-model='clientDetails.isconcurrent', name='concurrent', required='', ng-checked="options.one.selected")
+            span    IsConcurrent
+      tr
+        td(colspan='2')
+          br
+      tr.sample-table
+        td(colspan='2')
+          br
+          span
+            button.btn.btn-primary(ng-click='updateClient(clientDetails)', ng-disabled="!clientDetails.name || !clientDetails.intreval || !clientDetails.retry") Save
+          span(style="padding-left:10px")
+            button.btn.btn-primary(ng-click='reset()') Reset
+          
