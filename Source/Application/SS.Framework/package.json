@@ -24,7 +24,7 @@
     "js2xmlparser": "^3.0.0",
     "jsontoxml": "0.0.11",
     "mkdirp": "^0.5.1",
-    "moment": "^2.18.1",
+    "moment": "^2.29.4",
     "object-to-xml": "^1.1.0",
     "path": "^0.12.7",
     "selenium-webdriver": "^3.5.0"
